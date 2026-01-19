@@ -219,7 +219,7 @@ export default function App() {
                     <AdvancedFilters 
                       filters={filters} 
                       onFiltersChange={setFilters} 
-                      allAmenities={allAmenities as string[]} 
+                      allAmenities={allAmenities as any} 
                     />
                   </div>
                   
