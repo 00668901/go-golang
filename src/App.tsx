@@ -33,6 +33,7 @@ import { toast, Toaster } from 'sonner';
 import { getSupabaseClient } from './utils/supabase/client';
 
 // REVISI: Koneksi dinamis ke Backend Golang
+// @ts-ignore
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
 
 export default function App() {
@@ -132,7 +133,13 @@ export default function App() {
   const roomTypes = ['all', 'Deluxe', 'Suite', 'Executive', 'Standard', 'Penthouse'];
   const allAmenities = Array.from(new Set(rooms.flatMap(r => r.amenities || [])));
 
-  if (!isAuthenticated) return <AuthContainer onLoginSuccess={() => setIsAuthenticated(true)} />;
+  if (!isAuthenticated) return (
+    <AuthContainer 
+      onLoginSuccess={() => setIsAuthenticated(true)} 
+      projectId="isi_id_supabase_kamu" 
+      publicAnonKey="isi_key_supabase_kamu" 
+    />
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900">
@@ -208,7 +215,12 @@ export default function App() {
                         className="h-16 pl-14 pr-6 text-lg bg-gray-50 border-gray-100 rounded-2xl focus:ring-black focus:border-black transition-all"
                       />
                     </div>
-                    <AdvancedFilters filters={filters} onFiltersChange={setFilters} allAmenities={allAmenities} />
+                    // Tambahkan "as string[]" untuk meyakinkan TypeScript
+                    <AdvancedFilters 
+                      filters={filters} 
+                      onFiltersChange={setFilters} 
+                      allAmenities={allAmenities as string[]} 
+                    />
                   </div>
                   
                   <div className="flex flex-wrap gap-3">
