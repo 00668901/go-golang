@@ -245,7 +245,7 @@ export default function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {filteredRooms.map(room => (
-                <RoomCard key={room.id} room={room} onBook={(r) => { setSelectedRoom(r); setBookingModalOpen(true); }} />
+                <RoomCard key={(room as any).id} room={room} onBook={(r) => { setSelectedRoom(r); setBookingModalOpen(true); }} />
               ))}
             </div>
           </TabsContent>
