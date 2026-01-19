@@ -247,7 +247,7 @@ export default function App() {
             {filteredRooms.map((room, index) => (
               /* Paksa abaikan pengecekan tipe data khusus untuk baris ini saja */
               /* @ts-ignore */
-            <RoomCard key={index} room={room} onBook={(r) => { setSelectedRoom(r); setBookingModalOpen(true); }} />
+            <RoomCard key={index} room={room as any} onBook={(r) => { setSelectedRoom(r); setBookingModalOpen(true); }} />
             ))}
             </div>
           </TabsContent>
